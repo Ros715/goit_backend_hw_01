@@ -1,0 +1,29 @@
+{
+  "name": "goit_backend_hw_01",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index",
+    "start:dev": "nodemon index",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ros715/goit_backend_hw_01.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ros715/goit_backend_hw_01/issues"
+  },
+  "homepage": "https://github.com/Ros715/goit_backend_hw_01#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.14"
+  },
+  "dependencies": {
+    "uuid": "^8.3.2",
+    "yargs": "^17.2.1"
+  }
+}
