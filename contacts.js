@@ -1,24 +1,14 @@
-const fs = require("fs/promises"); //or ("fs").promises;
+const fs = require("fs/promises");
 const path = require("path");
 const { v4 } = require("uuid");
 
-const contactsPath = path.join(__dirname, "contacts.json");
+const contactsPath = path.join(__dirname, "db/contacts.json");
 
-/*
-Function: listContacts
-Parameters: none
-Return: a list of contacts [{id,name,email,phone},...]
-*/
 async function listContacts() {
   const data = await fs.readFile(contactsPath, "utf-8");
   return JSON.parse(data);
 }
 
-/*
-Function: getContactById
-Parameters: id (string or number)
-Return: selected contact {id,name,email,phone} or null
-*/
 async function getContactById(contactId) {
   const contacts = await listContacts();
   const result = contacts.find(
@@ -28,12 +18,6 @@ async function getContactById(contactId) {
   return result;
 }
 
-/*
-Function: removeContact
-Parameters: id (string or number)
-Return: removed contact {id,name,email,phone} or null
-Removes the selected contact from data base.
-*/
 async function removeContact(contactId) {
   const contacts = await listContacts();
   const idx = contacts.findIndex(
@@ -45,14 +29,10 @@ async function removeContact(contactId) {
   return removedContact;
 }
 
-/*
-Function: addContact
-Parameters: name,email,phone  (strings)
-Return: added contact {id,name,email,phone} or null
-Generates a unique id for the added contact.
-Adds the selected contact to data base.
-*/
 async function addContact(name, email, phone) {
+  if (!name) throw new Error("No name given");
+  if (!email) throw new Error("No email given");
+  if (!phone) throw new Error("No phone given");
   const contacts = await listContacts();
   const newContact = { name, email, phone, id: v4() };
   contacts.push(newContact);
